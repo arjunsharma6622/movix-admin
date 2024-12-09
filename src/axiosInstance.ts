@@ -14,6 +14,7 @@ const token = user ? JSON.parse(user).accessToken : null;
 
 if (token) {
     axiosInstance.defaults.headers.common['token'] = `Bearer ${token}`;
+    axiosInstance.defaults.withCredentials = false
 }
 
 export default axiosInstance;
