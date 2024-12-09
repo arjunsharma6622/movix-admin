@@ -64,7 +64,12 @@ export default function AllMovies() {
                     {movie.title}
                   </div>
                 </TableCell>
-                <TableCell className="border-b">{movie.genre.name}</TableCell>
+                <TableCell className="border-b">
+                  {
+                    typeof movie.genre === "object" &&
+                      movie.genre.name ? movie.genre.name : ""
+                  }
+                </TableCell>
                 <TableCell className="border-b">{movie.year}</TableCell>
                 <TableCell className="border-b">{movie.limit}</TableCell>
                 <TableCell className="border-b">{movie.isSeries ? "Yes" : "No"}</TableCell>

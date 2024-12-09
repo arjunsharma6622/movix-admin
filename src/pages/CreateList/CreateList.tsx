@@ -37,13 +37,13 @@ export default function CreateList() {
     fetchMovies();
   }, [])
 
-  const handleChange = (e) => {
+  const handleChange = (e : React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setList({ ...list, [e.target.name]: value })
   }
 
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e : React.FormEvent) => {
     e.preventDefault()
     await createList(list)
     toast.success("List Created");
@@ -142,7 +142,7 @@ export default function CreateList() {
                   { list.content?.includes(movie._id as string) &&
                     <Check className="inline w-5 h-5 mr-2"/>
                   }
-                  {movie.title} . {movie.genre.name}
+                  {movie.title} . {typeof movie.genre === "object" && movie.genre.name}
                 </span>
               ))}
             </div>

@@ -1,13 +1,13 @@
-import { useEffect, useState } from 'react'
-import { createGenre, deleteGenre, getGenres } from '../../apiCalls/genres'
-import "./allGenres.css"
+import { Edit3, Trash2 } from 'lucide-react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { GenreType } from '../../types/genre'
-import { ArrowUpRight, Edit3, Trash2 } from 'lucide-react'
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '../../components/ui/table'
 import { toast } from 'sonner'
+import { createGenre, deleteGenre, getGenres } from '../../apiCalls/genres'
 import { InputBox } from '../../components/InputBox'
 import { Button } from '../../components/ui/button'
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '../../components/ui/table'
+import { GenreType } from '../../types/genre'
+import "./allGenres.css"
 
 const AllGenres = () => {
     const [genres, setGenres] = useState<GenreType[]>([])
@@ -31,7 +31,7 @@ const AllGenres = () => {
         setGenres((prev) => prev.filter((genre) => genre._id !== id));
     }
 
-    const handleChange = (e) => {
+    const handleChange = (e : React.ChangeEvent<HTMLInputElement>) => {
         const value = e.target.value;
         setGenre({ ...genre, [e.target.name]: value })        
     }

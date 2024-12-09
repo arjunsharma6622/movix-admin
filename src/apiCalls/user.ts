@@ -10,7 +10,7 @@ export const getUsers = async () => {
     }
 }
 
-export const deleteUser = async (id) => {
+export const deleteUser = async (id : string) => {
     try{
         await axiosInstance.delete(`/user/${id}`);
         console.log("User deleted successfully");

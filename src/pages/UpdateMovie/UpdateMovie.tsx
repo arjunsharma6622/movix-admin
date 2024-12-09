@@ -1,17 +1,18 @@
 import { UploadCloud } from "lucide-react";
 import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import { getGenres } from "../../apiCalls/genres";
 import { getMovie, updateMovie } from "../../apiCalls/movie";
+import { InputBox } from "../../components/InputBox";
+import { GenreType } from "../../types/genre";
 import { MovieType } from "../../types/movie";
 import "./updateMovie.css";
-import { getGenres } from "../../apiCalls/genres";
-import { GenreType } from "../../types/genre";
-import { InputBox } from "../../components/InputBox";
-import { SelectBox } from "../../components/SelectBox";
 
 export default function UpdateMovie() {
 
     const [genreData, setGenreData] = useState<GenreType[]>([]);
+
+    console.log(genreData)
 
     const { id } = useParams();
     console.log("ID IS", id)
@@ -65,7 +66,7 @@ export default function UpdateMovie() {
                 </Link>
             </div>
             <div className="productBottom">
-                <form className="productForm">
+                <form onSubmit={handleUpdate} className="productForm">
                     <div className="flex flex-col gap-4">
                         <InputBox
                             title="Movie Title"
@@ -92,14 +93,14 @@ export default function UpdateMovie() {
                             onChange={handleChange}
                         />
 
-                        <SelectBox title="Genre" placeholder="Select Genre" optionsData={
+                        {/* <SelectBox title="Genre" placeholder="Select Genre" optionsData={
                             genreData.map((genre) => {
                                 return {
                                     value: genre._id as string,
                                     name: genre.name as string
                                 }
                             })
-                        } />
+                        } /> */}
 
 
                         <label>Trailer</label>
@@ -118,7 +119,7 @@ export default function UpdateMovie() {
                             </label>
                             <input type="file" id="file" style={{ display: "none" }} />
                         </div>
-                        <button className="productButton" onClick={handleUpdate}>Update</button>
+                        <button className="productButton" type="submit">Update</button>
                     </div>
                 </form>
             </div>

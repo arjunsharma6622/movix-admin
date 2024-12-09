@@ -63,7 +63,7 @@ export default function UpdateList() {
                         <label>Type</label>
                         <input type="text" placeholder={listData.type} onChange={handleChange} name="year" />
                         <label>Genre</label>
-                        <input type="text" placeholder={listData.genre} onChange={handleChange} name="genre" />
+                        <input type="text" placeholder={listData.genre as string} onChange={handleChange} name="genre" />
 
                     </div>
                     <div className="productFormRight">
