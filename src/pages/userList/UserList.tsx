@@ -1,6 +1,5 @@
-import { Edit3, Trash2 } from "lucide-react";
+import { Trash2 } from "lucide-react";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import { deleteUser, getUsers } from "../../apiCalls/user";
 import {
   Table,
@@ -10,8 +9,8 @@ import {
   TableHeader,
   TableRow,
 } from "../../components/ui/table"; // Adjust the path based on your setup
-import "./userList.css";
 import { UserType } from "../../types/user";
+import "./userList.css";
 
 export default function UserList() {
   const [users, setUsers] = useState<UserType[]>([]);
@@ -56,9 +55,6 @@ export default function UserList() {
               <TableCell className="">{user.email}</TableCell>
               <TableCell className="">{user.isAdmin ? "Yes" : "No"}</TableCell>
               <TableCell className="flex items-center gap-4">
-                <Link to={`/user/${user._id}`}>
-                  <Edit3 className="text-gray-500"/>
-                </Link>
                 <Trash2
                   className="text-red-500 cursor-pointer"
                   onClick={() => handleDelete(user._id!)}

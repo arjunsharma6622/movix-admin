@@ -20,7 +20,6 @@ import UpdateList from "./pages/UpdateList/UpdateList";
 // users
 import React from "react";
 import AllGenres from "./pages/AllGenres/AllGenres";
-import User from "./pages/user/User";
 import UserList from "./pages/userList/UserList";
 import { UserType } from "./types/user";
 
@@ -38,7 +37,6 @@ function App() {
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/users" element={<UserList />} />
-                <Route path="/user/:userId" element={<User />} />
                 <Route path="/movies" element={<AllMovies />} />
                 <Route path="/movie/:id" element={<UpdateMovie />} />
                 <Route path="/createmovie" element={<CreateMovie />} />

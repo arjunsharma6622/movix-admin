@@ -60,7 +60,6 @@ export default function AllMovies() {
                 <TableCell className="border-b">{index + 1}</TableCell>
                 <TableCell className="border-b">
                   <div className="productListItem">
-                    <img className="productListImg" src={movie.img} alt="" />
                     {movie.title}
                   </div>
                 </TableCell>

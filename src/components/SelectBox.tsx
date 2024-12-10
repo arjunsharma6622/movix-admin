@@ -11,6 +11,7 @@ import {
 type selectBoxProps = {
     title: string;
     placeholder: string;
+    defaultValue ?: string | number | boolean;
     optionsData: {
         value: string | number | boolean;
         name: string;
@@ -18,13 +19,13 @@ type selectBoxProps = {
     onChange: (value: string | boolean | number) => void;
 }
 
-export function SelectBox({ title, placeholder, optionsData, onChange }: selectBoxProps) {
+export function SelectBox({ title, defaultValue, placeholder, optionsData, onChange }: selectBoxProps) {
     return (
         <div className="grid w-full max-w-sm items-center gap-1.5">
             <Label>{title}</Label>
 
             <Select 
-                defaultValue="" 
+                value={defaultValue as string}
                 onValueChange={(value) => {
                     const selected = optionsData.find(
                         (option) => option.value.toString() === value

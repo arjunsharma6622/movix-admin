@@ -42,7 +42,6 @@ export default function CreateMovie() {
 
   const [image, setImage] = useState<File | null>(null);
   const [imageTitle, setImageTitle] = useState<File | null>(null);
-  const [imageSm, setImageSm] = useState<File | null>(null);
   const [trailer, setTrailer] = useState<File | null>(null);
   const [video, setVideo] = useState<File | null>(null);
   const [progress, setProgress] = useState<number>(0);
@@ -112,9 +111,8 @@ export default function CreateMovie() {
       await uploadAllItems([
         { file: image as File, label: "img" },
         { file: imageTitle as File, label: "imgTitle" },
-        { file: imageSm as File, label: "imgSm" },
-        { file: video as File, label: "video" },
         { file: trailer as File, label: "trailer" },
+        { file: video as File, label: "video" },
       ]);
       setAllUploadsDone(true);
       toast.success("All Media Uploaded")
@@ -141,175 +139,196 @@ export default function CreateMovie() {
 
   return (
     <div className="p-10">
-      <form className="flex flex-col gap-4 w-[75%] mx-auto bg-white p-10 py-6 pb-10 rounded-xl">
-      <h1 className="text-center text-2xl font-semibold">New Movie</h1>
+    <form className="flex flex-col gap-4 w-[75%] mx-auto bg-white p-10 py-6 pb-10 rounded-xl">
+        <h1 className="text-center text-2xl font-semibold">Update Movie</h1>
 
-      <hr />
+        <hr />
 
-        <div className="flex items-start w-full gap-10 mt-4">
-          
-          <div className="w-full flex items-center flex-col gap-5">
-            
-            <InputBox
-              title="Movie Title"
-              name="title"
-              type="text"
-              id="movieTitle"
-              placeholder="Movie Title"
-              value={movie.title}
-              onChange={handleChange}
-            />
-            <InputBox
-              title="Description"
-              name="desc"
-              type="text"
-              id="description"
-              placeholder="Description"
-              value={movie.desc}
-              onChange={handleChange}
-            />
+        <div className="flex items-center flex-col w-full gap-10 mt-4">
 
-            <div className="flex items-center gap-4 w-full">
+            <div className="w-full flex items-start gap-5">
 
-              <InputBox
-                title="Year"
-                name="year"
-                type="number"
-                id="year"
-                placeholder="Movie Year"
-                value={movie.year}
-                onChange={handleChange}
-              />
+                <div className="w-full flex flex-col gap-4">
+                    <InputBox
+                        title="Movie Title"
+                        name="title"
+                        type="text"
+                        id="movieTitle"
+                        placeholder="Movie Title"
+                        value={movie.title}
+                        onChange={handleChange}
+                    />
+                    <InputBox
+                        title="Description"
+                        name="desc"
+                        type="text"
+                        id="description"
+                        placeholder="Description"
+                        value={movie.desc}
+                        onChange={handleChange}
+                    />
 
-              <InputBox
-                title="Age Limit"
-                name="limit"
-                type="text"
-                id="ageLimit"
-                placeholder="Age Limit"
-                value={movie.limit}
-                onChange={handleChange}
-              />
+                    <div className="flex items-center gap-4 w-full">
 
-            </div>
+                        <InputBox
+                            title="Year"
+                            name="year"
+                            type="number"
+                            id="year"
+                            placeholder="Movie Year"
+                            value={movie.year}
+                            onChange={handleChange}
+                        />
 
-            <SelectBox
-              title="Is Series"
-              placeholder="select is series"
-              optionsData={[
-                { name: "Yes", value: "true" },
-                { name: "No", value: "false" },
-              ]}
-              onChange={(value) => handleSelectChange("isSeries", value)}
-            />
+                        <InputBox
+                            title="Age Limit"
+                            name="limit"
+                            type="text"
+                            id="ageLimit"
+                            placeholder="Age Limit"
+                            value={movie.limit}
+                            onChange={handleChange}
+                        />
 
-            <SelectBox
-              title="Genre"
-              placeholder="Select Genre"
-              optionsData={
-                genreData.map((genre) => {
-                  return {
-                    value: genre._id as string,
-                    name: genre.name as string
-                  }
-                })}
-              onChange={(value) => handleSelectChange("genre", value)}
-            />
-
-            <InputBox
-              title="Duration"
-              name="duration"
-              type="text"
-              id="duration"
-              placeholder="Movie Duration"
-              value={movie.duration}
-              onChange={handleChange}
-            />
-
-          </div>
-
-          <div className="w-full flex items-center flex-col gap-5">
-
-            <InputBox
-              title="Image"
-              name="image"
-              type="file"
-              id="image"
-              onChange={(e) => setImage(e.target.files ? e.target.files[0] : null)}
-            />
-            <InputBox
-              title="Title Image"
-              name="imgTitle"
-              type="file"
-              id="imgTitle"
-              onChange={(e) => setImageTitle(e.target.files ? e.target.files[0] : null)}
-            />
-
-            <InputBox
-              title="Thumbnail Image"
-              name="imgSm"
-              type="file"
-              id="imgSm"
-              onChange={(e) => setImageSm(e.target.files ? e.target.files[0] : null)}
-            />
-
-            <InputBox
-              title="Trailer"
-              name="trailer"
-              type="file"
-              id="trailer"
-              onChange={(e) => setTrailer(e.target.files ? e.target.files[0] : null)}
-            />
-
-            <InputBox
-              title="Full Movie"
-              name="video"
-              type="file"
-              id="video"
-              onChange={(e) => setVideo(e.target.files ? e.target.files[0] : null)}
-            />
-
-
-            <div className="mt- w-full">
-
-              {allUploadsDone ?
-                <div className="text-green-500 mt-2 bg-green-50 w-full flex items-center gap-4 px-5 py-3 rounded-xl">
-                  <CheckCircle className="text-green-500 text-xl" />
-                  <p>All Files Uploaded</p>
-                </div>
-                :
-                <>
-                  {uploadStarted ?
-                    <div className="w-full flex flex-col gap-2">
-                      <p className="text-lg font-semibold flex items-center gap-2">
-                        Uploading
-                        <span className="underline">{currentFile}</span>
-                      </p>
-                      <div className="flex items-center gap-2">
-                        <Progress indicatorColor="bg-green-500" value={progress} />
-                        <span>{Math.round(progress)}%</span>
-                      </div>
                     </div>
-                    :
-                    <Button className="w-full mt-[23px]" onClick={handleUpload}>
-                      <UploadCloud className="inline text-xl" />
-                      Upload Media
-                    </Button>
-                  }
-                </>
 
-              }
+                </div>
+
+                <div className="w-full flex flex-col gap-4">
+
+                    <SelectBox
+                        title="Is Series"
+                        placeholder="select is series"
+                        optionsData={[
+                            { name: "Yes", value: "true" },
+                            { name: "No", value: "false" },
+                        ]}
+                        defaultValue={`${movie.isSeries}`}
+                        onChange={(value) => handleSelectChange("isSeries", value)}
+                    />
+
+                    <SelectBox
+                        title="Genre"
+                        placeholder="Select Genre"
+                        optionsData={
+                            genreData.map((genre) => {
+                                return {
+                                    value: genre._id as string,
+                                    name: genre.name as string
+                                }
+                            })}
+                        defaultValue={typeof movie.genre === "object" ? movie.genre._id : ""}
+                        onChange={(value) => handleSelectChange("genre", value)}
+                    />
+
+                    <InputBox
+                        title="Duration"
+                        name="duration"
+                        type="text"
+                        id="duration"
+                        placeholder="Movie Duration"
+                        value={movie.duration}
+                        onChange={handleChange}
+                    />
+
+                </div>
 
             </div>
 
-          </div>
+            <div className="w-full flex items-center flex-col gap-6">
+                <h1>Upload Media</h1>
+                <div className="flex items-start w-full gap-4">
+                    <div className="w-full flex flex-col gap-2">
+                        <InputBox
+                            title="Image"
+                            name="image"
+                            type="file"
+                            id="image"
+                            onChange={(e) => setImage(e.target.files ? e.target.files[0] : null)}
+                        />
+                        <img src={movie.img} alt="" />
+                    </div>
+                    <div className="w-full flex flex-col gap-2">
+                        <InputBox
+                            title="Title Image"
+                            name="imgTitle"
+                            type="file"
+                            id="imgTitle"
+                            onChange={(e) => setImageTitle(e.target.files ? e.target.files[0] : null)}
+                        />
+                        <img src={movie.imgTitle} alt="" />
+                    </div>
+
+                </div>
+
+                <div className="flex items-start w-full gap-4">
+
+                    <div className="w-full flex flex-col gap-2">
+                        <InputBox
+                            title="Trailer"
+                            name="trailer"
+                            type="file"
+                            id="trailer"
+                            onChange={(e) => setTrailer(e.target.files ? e.target.files[0] : null)}
+                        />
+                        <video controls src={movie.trailer}></video>
+                    </div>
+
+                    <div className="w-full flex flex-col gap-2">
+
+                        <InputBox
+                            title="Full Movie"
+                            name="video"
+                            type="file"
+                            id="video"
+                            onChange={(e) => setVideo(e.target.files ? e.target.files[0] : null)}
+                        />
+                        <video controls src={movie.video}></video>
+                    </div>
+
+                </div>
+
+
+
+                <div className="mt- w-full">
+
+                    {allUploadsDone ?
+                        <div className="text-green-500 mt-2 bg-green-50 w-full flex items-center gap-4 px-5 py-3 rounded-xl">
+                            <CheckCircle className="text-green-500 text-xl" />
+                            <p>All Files Uploaded</p>
+                        </div>
+                        :
+                        <>
+                            {uploadStarted ?
+                                <div className="w-full flex flex-col gap-2">
+                                    <p className="text-lg font-semibold flex items-center gap-2">
+                                        Uploading
+                                        <span className="underline">{currentFile}</span>
+                                    </p>
+                                    <div className="flex items-center gap-2">
+                                        <Progress indicatorColor="bg-green-500" value={progress} />
+                                        <span>{Math.round(progress)}%</span>
+                                    </div>
+                                </div>
+                                :
+                                <Button className="w-full mt-[23px]" onClick={handleUpload}>
+                                    <UploadCloud className="inline text-xl" />
+                                    Upload Media
+                                </Button>
+                            }
+                        </>
+
+                    }
+                </div>
+
+            </div>
         </div>
         {allUploadsDone && (
-          <Button className="" onClick={handleSubmit}>
-            Create
-          </Button>
+            <Button className="" onClick={handleSubmit}>
+                Create
+            </Button>
         )}
-      </form>
-    </div>
+    </form>
+</div>
   );
 }
