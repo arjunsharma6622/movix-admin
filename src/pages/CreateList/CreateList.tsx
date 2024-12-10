@@ -87,7 +87,7 @@ export default function CreateList() {
   return (
     <div className="p-10">
       <form className="flex flex-col gap-4 w-[80%] mx-auto bg-white p-10 py-6 pb-10 rounded-xl">
-        <h1 className="text-center text-2xl font-semibold">Create Genre</h1>
+        <h1 className="text-center text-2xl font-semibold">Create List</h1>
 
 <div className="flex w-full gap-4">
         <div className="flex flex-col gap-4 w-full">

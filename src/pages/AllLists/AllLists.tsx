@@ -59,7 +59,7 @@ export default function AllLists() {
                 <TableCell>{list.type}</TableCell>
                 <TableCell>
                   <div className="flex items-center gap-4 ">
-                    <Link to={`/lists/${list._id}`}>
+                    <Link to={`/list/${list._id}`}>
                       <Edit3 className="text-gray-500" />
                     </Link>
                     <Trash2

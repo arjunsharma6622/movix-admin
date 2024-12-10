@@ -41,7 +41,7 @@ function App() {
                 <Route path="/movie/:id" element={<UpdateMovie />} />
                 <Route path="/createmovie" element={<CreateMovie />} />
                 <Route path="/lists" element={<AllLists />} />
-                <Route path="/updateList/:id" element={<UpdateList />} />
+                <Route path="/list/:id" element={<UpdateList />} />
                 <Route path="/createList" element={<CreateList />} />
                 <Route path="/genres" element={<AllGenres />} />
                 <Route path="/login" element={<Navigate to={"/"} />} />
